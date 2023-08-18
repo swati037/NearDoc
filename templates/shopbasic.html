@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>{% block title%} {% endblock %}</title>
+     <style>
+       {% block css %}
+
+
+       #topbar {
+  background: #fff;
+  height: 40px;
+  font-size: 14px;
+  transition: all 0.5s;
+  z-index: 996;
+}
+{% endblock %}
+  </style>
+
+    <!-- Favicons -->
+  <link href="../../../static/assets/img/favicon.png" rel="icon">
+  <link href="../../static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../../static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../../static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../../static/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../../static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../../static/assets/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+<header id="header">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">NearDoc</a></h1>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">Find Doctors</a></li>
+          <li><a class="nav-link scrollto" href="#services">Video Consult</a></li>
+          <li><a class="nav-link scrollto" href="#departments">Medicines</a></li>
+          <li><a class="nav-link scrollto" href="#doctors">Lab Tests</a></li>
+
+          </li>
+           <li><a class="nav-link scrollto" href="/contact">Contact</a></li>
+          {% for user in users %}
+          {% if request.session.email == user.email %}
+<li class="dropdown"><a href="#"><span>Hii {{user.username}}!</span> <i class="bi bi-chevron-down"></i></a>
+ {% endif %}
+          {% endfor %}
+ <ul>
+     {% for user in users %}
+          {% if request.session.email == user.email %}
+   <li><a href="/logout">Logout</a></li>
+   {% endif %}
+     {% endfor %}
+</ul>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+
+    </div>
+  </header><!-- End Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light my-4">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="topbar" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+
+        <a class="nav-link" href="#"><h5> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h5><span class="sr-only"></span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/shop"><h5>Medicine</h5><span class="sr-only"></span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/shop/tracker"><h5>Tracker</h5></a>
+      </li>
+
+    </ul>
+    <form method='get' action='/shop/search/' class="form-inline my-2 my-lg-0 php-email-form">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+      <button class="appointment-btn scrollto btn btn-primary mx-3"><span class="d-none d-md-inline" type="submit">Search</span></button>
+    </form>
+    <button type="button" class="btn btn-secondary mx-2 button5 appointment-btn scrollto" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">
+
+
+  Cart(<span id="cart">0</span>)
+</button>
+    <a href=""><h5>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h5></a>
+  </div>
+
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light my-4"></nav>
+  {% block body %} {% endblock %}
+ <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../../static/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../../static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../../static/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../../static/assets/js/main.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    {% block js %} {% endblock %}
+  </body>
+</html>
